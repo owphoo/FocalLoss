@@ -1,0 +1,18 @@
+message FocalLossParameter {
+  enum Engine {
+    DEFAULT = 0; 
+    CAFFE = 1; 
+    CUDNN = 2; 
+  }
+  optional Engine engine = 1 [default = DEFAULT];
+  // The axis along which to perform the softmax -- may be negative to index
+  // from the end (e.g., -1 for the last axis).
+  // Any other axes will be evaluated as independent softmaxes.
+  optional int32 axis = 2 [default = 1];
+  // focusing parameter，refer to equ(5) in the paper
+  optional float gamma = 3 [default = 2];
+  // whether add alpha balance term, equ(5) in paper
+  optional bool alpha_balance = 4 [default = false];
+  //length of alpha equals to class number
+  repeated float alpha = 5;
+}
